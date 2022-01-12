@@ -13,6 +13,7 @@
 		183457AC278EC32A003BE5BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183457AA278EC32A003BE5BF /* Main.storyboard */; };
 		183457AE278EC32D003BE5BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 183457AD278EC32D003BE5BF /* Assets.xcassets */; };
 		183457B1278EC32D003BE5BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183457AF278EC32D003BE5BF /* LaunchScreen.storyboard */; };
+		183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457B9278EC5F9003BE5BF /* RBHomeCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		183457AD278EC32D003BE5BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		183457B0278EC32D003BE5BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		183457B2278EC32D003BE5BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		183457B9278EC5F9003BE5BF /* RBHomeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBHomeCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		183457A3278EC32A003BE5BF /* RBSwiftUtils */ = {
 			isa = PBXGroup;
 			children = (
+				183457B8278EC5D7003BE5BF /* Model */,
 				183457A4278EC32A003BE5BF /* AppDelegate.swift */,
 				183457A6278EC32A003BE5BF /* SceneDelegate.swift */,
 				183457A8278EC32A003BE5BF /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				183457B2278EC32D003BE5BF /* Info.plist */,
 			);
 			path = RBSwiftUtils;
+			sourceTree = "<group>";
+		};
+		183457B8278EC5D7003BE5BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				183457B9278EC5F9003BE5BF /* RBHomeCellModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 			files = (
 				183457A9278EC32A003BE5BF /* ViewController.swift in Sources */,
 				183457A5278EC32A003BE5BF /* AppDelegate.swift in Sources */,
+				183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */,
 				183457A7278EC32A003BE5BF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
