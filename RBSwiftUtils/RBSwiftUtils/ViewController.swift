@@ -68,6 +68,15 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
         // 3.返回cell
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellModel:RBHomeCellModel = self.dataSource[indexPath.row]
+        
+        if cellModel.floorType == .alertType {
+            self.navigationController?.pushViewController(RBAlertViewTestController(), animated: true)
+        }
+        
+    }
 }
 
 
