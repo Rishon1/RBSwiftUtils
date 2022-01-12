@@ -16,6 +16,8 @@
 		183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457B9278EC5F9003BE5BF /* RBHomeCellModel.swift */; };
 		183457BF278EC99F003BE5BF /* RBAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457BE278EC99F003BE5BF /* RBAlertView.swift */; };
 		183457C1278ECBC5003BE5BF /* RBAlertViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */; };
+		183457C3278ECFF9003BE5BF /* RBViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C2278ECFF9003BE5BF /* RBViewTestController.swift */; };
+		183457C6278ED06E003BE5BF /* RBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C5278ED06E003BE5BF /* RBView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		183457B9278EC5F9003BE5BF /* RBHomeCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBHomeCellModel.swift; sourceTree = "<group>"; };
 		183457BE278EC99F003BE5BF /* RBAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBAlertView.swift; sourceTree = "<group>"; };
 		183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBAlertViewTestController.swift; sourceTree = "<group>"; };
+		183457C2278ECFF9003BE5BF /* RBViewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBViewTestController.swift; sourceTree = "<group>"; };
+		183457C5278ED06E003BE5BF /* RBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */,
+				183457C2278ECFF9003BE5BF /* RBViewTestController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 		183457BC278EC877003BE5BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				183457C4278ED05E003BE5BF /* RBView */,
 				183457BD278EC976003BE5BF /* RBAlertView */,
 			);
 			path = Utils;
@@ -106,6 +112,14 @@
 				183457BE278EC99F003BE5BF /* RBAlertView.swift */,
 			);
 			path = RBAlertView;
+			sourceTree = "<group>";
+		};
+		183457C4278ED05E003BE5BF /* RBView */ = {
+			isa = PBXGroup;
+			children = (
+				183457C5278ED06E003BE5BF /* RBView.swift */,
+			);
+			path = RBView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,11 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183457C3278ECFF9003BE5BF /* RBViewTestController.swift in Sources */,
 				183457BF278EC99F003BE5BF /* RBAlertView.swift in Sources */,
 				183457C1278ECBC5003BE5BF /* RBAlertViewTestController.swift in Sources */,
 				183457A9278EC32A003BE5BF /* ViewController.swift in Sources */,
 				183457A5278EC32A003BE5BF /* AppDelegate.swift in Sources */,
 				183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */,
+				183457C6278ED06E003BE5BF /* RBView.swift in Sources */,
 				183457A7278EC32A003BE5BF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

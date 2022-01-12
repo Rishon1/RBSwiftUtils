@@ -75,6 +75,9 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
         if cellModel.floorType == .alertType {
             self.navigationController?.pushViewController(RBAlertViewTestController(), animated: true)
         }
+        else if cellModel.floorType == .viewType {
+            self.navigationController?.pushViewController(RBViewTestController(), animated: true)
+        }
         
     }
 }
