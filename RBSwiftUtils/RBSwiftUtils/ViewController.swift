@@ -20,7 +20,9 @@ class ViewController: UIViewController {
     // MARK: 🔥🔥🔥🔥🔥🔥處理樓層數據💧💧💧💧💧💧💧
     fileprivate func dealWithDataSource() {
         
-        self.dataSource = [RBHomeCellModel(.alertType, title: "AlertView"), RBHomeCellModel(.viewType, title: "UIView")]
+        self.dataSource = [RBHomeCellModel(.alertType, title: "AlertView"),
+                           RBHomeCellModel(.viewType, title: "UIView"),
+                           RBHomeCellModel(.labelType, title: "UILabel")]
         
         self.tableView.reloadData()
     }
@@ -77,6 +79,9 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
         }
         else if cellModel.floorType == .viewType {
             self.navigationController?.pushViewController(RBViewTestController(), animated: true)
+        }
+        else if cellModel.floorType == .labelType {
+            self.navigationController?.pushViewController(RBLabelViewController(), animated: true)
         }
         
     }

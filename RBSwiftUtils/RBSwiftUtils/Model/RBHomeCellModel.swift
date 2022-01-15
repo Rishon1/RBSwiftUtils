@@ -9,7 +9,7 @@
 import Foundation
 
 enum RBHomeCellType {
-    case noneType, alertType, viewType
+    case noneType, alertType, viewType, labelType
 }
 
 class RBHomeCellModel: NSObject {

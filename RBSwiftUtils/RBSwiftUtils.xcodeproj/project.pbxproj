@@ -18,6 +18,8 @@
 		183457C1278ECBC5003BE5BF /* RBAlertViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */; };
 		183457C3278ECFF9003BE5BF /* RBViewTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C2278ECFF9003BE5BF /* RBViewTestController.swift */; };
 		183457C6278ED06E003BE5BF /* RBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457C5278ED06E003BE5BF /* RBView.swift */; };
+		183457CF27929E3D003BE5BF /* RBLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457CE27929E3D003BE5BF /* RBLabel.swift */; };
+		183457D12792A417003BE5BF /* RBLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457D02792A417003BE5BF /* RBLabelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBAlertViewTestController.swift; sourceTree = "<group>"; };
 		183457C2278ECFF9003BE5BF /* RBViewTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBViewTestController.swift; sourceTree = "<group>"; };
 		183457C5278ED06E003BE5BF /* RBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBView.swift; sourceTree = "<group>"; };
+		183457CE27929E3D003BE5BF /* RBLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBLabel.swift; sourceTree = "<group>"; };
+		183457D02792A417003BE5BF /* RBLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBLabelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			children = (
 				183457C0278ECBC5003BE5BF /* RBAlertViewTestController.swift */,
 				183457C2278ECFF9003BE5BF /* RBViewTestController.swift */,
+				183457D02792A417003BE5BF /* RBLabelViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 		183457BC278EC877003BE5BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				183457CD27929E23003BE5BF /* RBLabel */,
 				183457C4278ED05E003BE5BF /* RBView */,
 				183457BD278EC976003BE5BF /* RBAlertView */,
 			);
@@ -120,6 +126,14 @@
 				183457C5278ED06E003BE5BF /* RBView.swift */,
 			);
 			path = RBView;
+			sourceTree = "<group>";
+		};
+		183457CD27929E23003BE5BF /* RBLabel */ = {
+			isa = PBXGroup;
+			children = (
+				183457CE27929E3D003BE5BF /* RBLabel.swift */,
+			);
+			path = RBLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				183457C3278ECFF9003BE5BF /* RBViewTestController.swift in Sources */,
+				183457D12792A417003BE5BF /* RBLabelViewController.swift in Sources */,
 				183457BF278EC99F003BE5BF /* RBAlertView.swift in Sources */,
 				183457C1278ECBC5003BE5BF /* RBAlertViewTestController.swift in Sources */,
 				183457A9278EC32A003BE5BF /* ViewController.swift in Sources */,
@@ -202,6 +217,7 @@
 				183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */,
 				183457C6278ED06E003BE5BF /* RBView.swift in Sources */,
 				183457A7278EC32A003BE5BF /* SceneDelegate.swift in Sources */,
+				183457CF27929E3D003BE5BF /* RBLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
