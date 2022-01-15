@@ -24,8 +24,9 @@ class RBLabelViewController: UIViewController {
         label.backgroundColor = .green
         self.view.addSubview(label)
         let label1 = RBLabel(CGRect(x: 20, y: 250, width: 30, height: 44), paddingSpace: 3)
-        label1.text = "标签信息信息信息"
+        label1.font = .systemFont(ofSize: 14)
         label1.textColor = .red
+        label1.text = "标签信息信息信息"
         label1.layer.cornerRadius = 5
         label1.layer.borderColor = UIColor.red.cgColor
         label1.layer.borderWidth = 1
