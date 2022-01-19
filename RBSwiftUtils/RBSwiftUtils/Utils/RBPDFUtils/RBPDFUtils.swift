@@ -27,8 +27,6 @@ private enum RBPDFCommand {
     case addRishonCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat, endAngle:CGFloat, clockwise:Bool)
     case addRishonSpace(CGFloat)
     
-    case addTableLine(lineHeight: CGFloat, lineWidth: CGFloat, lineColor: UIColor)
-    
     case setContentAlignment(ContentAlignment)
     case beginNewPage
     
@@ -303,10 +301,6 @@ open class RBPDFUtils {
     /// - Parameter space: 偏移量
     open func addRishonSpace(_ space: CGFloat) {
         commands += [ .addRishonSpace(space) ]
-    }
-    
-    open func addTableLine(lineHeight: CGFloat, lineWidth: CGFloat, lineColor: UIColor) {
-        commands += [ .addTableLine(lineHeight: lineHeight, lineWidth: lineWidth, lineColor: lineColor)]
     }
     
     open func setContentAlignment(_ alignment: ContentAlignment) {
@@ -1502,15 +1496,6 @@ open class RBPDFUtils {
                     currentOffset = CGPoint(x: currentOffset.x + space, y: currentOffset.y)
                 case .vertical:
                     lastYOffset = currentOffset.y + space
-                    currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
-                }
-            case let .addTableLine(lineHeight, lineWidth, lineColor):
-                let tableFrame = drawRishonTableLine(lineHeight: lineHeight, lineWidth: lineWidth, currentOffset: currentOffset, lineColor: lineColor)
-                lastYOffset = tableFrame.origin.y + tableFrame.height
-                switch arrangementDirection {
-                case .horizontal:
-                    currentOffset = CGPoint(x: tableFrame.origin.x + tableFrame.width, y: currentOffset.y)
-                case .vertical:
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
             case let .setContentAlignment(newAlignment):
