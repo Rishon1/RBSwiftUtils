@@ -159,10 +159,13 @@ open class RBPDFUtils {
     ///   - rowCount: 行數
     ///   - columnCount: 列數
     ///   - rowHeight: 行高
-    ///   - rowHeightRefer: 行高參考標準
+    ///   - rowHeightRefer: 行高参考高度
     ///   - tableLineWidth: 邊框線寬
+    ///   - tableLineColor: 边框颜色
     ///   - tableDefinition: 表格內容 屬性
-    ///   - dataArray: 數據源
+    ///   - dataArray: 数据源
+    ///   - imageSize: 图片大小
+    ///   - rowFirstLineShow: 第一行线是否展示
     open func addRishonUITable(_ rowCount: Int,
                           columnCount: Int,
                           rowHeight: CGFloat,
@@ -182,22 +185,25 @@ open class RBPDFUtils {
     ///   - rowCount: 行數
     ///   - columnCount: 列數
     ///   - rowHeight: 行高
-    ///   - rowHeightRefer: 行高参考标准
+    ///   - rowHeightRefer: 行高参考高度
     ///   - tableLineWidth: 邊框線寬
+    ///   - tableLineColor: 边框颜色
     ///   - tableDefinition: 表格內容 屬性
-    ///   - dataArray: 數據源
+    ///   - dataArray: 数据源
     ///   - columnLine: 豎線展示控制，數組個數與 列數一直
+    ///   - imageSize: 图片大小
+    ///   - rowFirstLineShow: 第一行线是否展示
     open func addRishonUITable(_ rowCount: Int,
-                          columnCount: Int,
-                          rowHeight: CGFloat,
-                          rowHeightRefer: CGFloat = 30,
-                          tableLineWidth: CGFloat = 1,
-                          tableLineColor: UIColor = .black,
-                          tableDefinition: TableDefinition,
-                          dataArray: Array<Array<Any>>,
-                          columnLine: [Bool],
-                          imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
-                          rowFirstLineShow: Bool = true) {
+                               columnCount: Int,
+                               rowHeight: CGFloat,
+                               rowHeightRefer: CGFloat = 30,
+                               tableLineWidth: CGFloat = 1,
+                               tableLineColor: UIColor = .black,
+                               tableDefinition: TableDefinition,
+                               dataArray: Array<Array<Any>>,
+                               columnLine: [Bool],
+                               imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
+                               rowFirstLineShow: Bool = true) {
         commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: nil, imageSize: imageSize, progressBarBackColor: nil, progressBarFinishColor: nil, progressBarBold: false, progressBarFont: 0, progressBarColor: nil, rowFirstLineShow: rowFirstLineShow) ]
     }
     
@@ -206,11 +212,14 @@ open class RBPDFUtils {
     ///   - rowCount: 行數
     ///   - columnCount: 列數
     ///   - rowHeight: 行高
-    ///   - rowHeightRefer: 行高參考值
+    ///   - rowHeightRefer: 行高参考高度
     ///   - tableLineWidth: 邊框線寬
+    ///   - tableLineColor: 边框颜色
     ///   - tableDefinition: 表格內容 屬性
-    ///   - dataArray: 數據源
+    ///   - dataArray: 数据源
     ///   - rowLine: 橫線展示控制，個數與 行數一直
+    ///   - imageSize: 图片大小
+    ///   - rowFirstLineShow: 第一行线是否展示
     open func addRishonUITable(_ rowCount: Int,
                                columnCount: Int,
                                rowHeight: CGFloat,
@@ -226,16 +235,18 @@ open class RBPDFUtils {
     }
     
     /// 繪製表格數據
-    /// - Parameters:
     ///   - rowCount: 行數
     ///   - columnCount: 列數
     ///   - rowHeight: 行高
     ///   - rowHeightRefer: 行高参考高度
     ///   - tableLineWidth: 邊框線寬
+    ///   - tableLineColor: 边框颜色
     ///   - tableDefinition: 表格內容 屬性
-    ///   - dataArray: 數據源
+    ///   - dataArray: 数据源
     ///   - columnLine: 豎線展示控制，數組個數與 列數一直
     ///   - rowLine: 橫線展示控制，個數與 行數一直
+    ///   - imageSize: 图片大小
+    ///   - rowFirstLineShow: 第一行线是否展示
     open func addRishonUITable(_ rowCount: Int,
                                columnCount: Int,
                                rowHeight: CGFloat,
@@ -381,7 +392,7 @@ open class RBPDFUtils {
     }
     
     
-    // MARK: 内部绘制方法
+    // MARK: 🔥🔥🔥🔥🔥🔥🔥🔥🔥内部绘制方法💧💧💧💧💧💧💧💧
     /// - returns: drawing text rect
     fileprivate func drawText(_ text: String, font: UIFont, textColor: UIColor, alignment: ContentAlignment, currentOffset: CGPoint) -> CGRect {
         
