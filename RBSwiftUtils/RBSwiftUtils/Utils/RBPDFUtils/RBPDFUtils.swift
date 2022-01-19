@@ -22,6 +22,8 @@ private enum RBPDFCommand {
     
     case addFIHUITable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, rowHeightRefer: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, tableLineColor: UIColor, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<Any>>, columnLine: [Bool]?, rowLine:[Bool]?, imageSize: CGSize?, rowFirstLineShow:Bool?)
     
+    case addFIHTorusScale(size: CGSize, backColor: UIColor, finishColor: UIColor, torusWidth: CGFloat, startAngle: CGFloat, clockwise:Bool, scale: CGFloat, scaleBold: Bool, scaleFont: CGFloat, scaleColor: UIColor, tipsText: String, tipsFont: CGFloat, tipsColor:UIColor, tipsBold: Bool)
+    
     case addFIHCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat, endAngle:CGFloat, clockwise:Bool)
     case addFIHSpace(CGFloat)
     
@@ -249,6 +251,40 @@ open class RBPDFUtils {
                             rowFirstLineShow: Bool = true) {
         commands += [ .addFIHUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
     }
+    
+    /// 绘制环状 达成率图
+    /// - Parameters:
+    ///   - rect: 位置
+    ///   - backColor: 背景色
+    ///   - finishColor: 完成色
+    ///   - torusWidth: 环宽
+    ///   - startAngle: 开始点 默认是  pi * 3/2   (12点方向)
+    ///   - clockwise: 是否逆时针  默认 顺时针
+    ///   - scale: 完成率
+    ///   - scaleBold: 是否加粗
+    ///   - scaleFont: 字体大小
+    ///   - scaleColor: 字体颜色
+    ///   - tipsText: 提示文案
+    ///   - tipsFont: 提示文案字体大小
+    ///   - tipsColor: 提示文案颜色
+    ///   - tipsBold: 提示文案是否加粗
+    open func addFIHTorusScale(size: CGSize,
+                               backColor: UIColor,
+                               finishColor: UIColor,
+                               torusWidth: CGFloat,
+                               startAngle: CGFloat = .pi * 3/2,
+                               clockwise:Bool = false,
+                               scale: CGFloat,
+                               scaleBold: Bool = true,
+                               scaleFont: CGFloat = 20,
+                               scaleColor: UIColor = .black,
+                               tipsText: String,
+                               tipsFont: CGFloat = 15,
+                               tipsColor:UIColor = .gray,
+                               tipsBold: Bool = true){
+        commands += [ .addFIHTorusScale(size: size, backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)]
+    }
+    
     
     ///  绘制圆环进度条
     /// - Parameters:
@@ -1095,6 +1131,75 @@ open class RBPDFUtils {
         context.strokePath()
     }
     
+    /// 绘制环状 达成率图
+    /// - Parameters:
+    ///   - rect: 位置
+    ///   - backColor: 背景色
+    ///   - finishColor: 完成色
+    ///   - torusWidth: 环宽
+    ///   - startAngle: 开始点 默认是  pi * 3/2   (12点方向)
+    ///   - clockwise: 是否逆时针  默认 顺时针
+    ///   - scale: 完成率
+    ///   - scaleBold: 是否加粗
+    ///   - scaleFont: 字体大小
+    ///   - scaleColor: 字体颜色
+    ///   - tipsText: 提示文案
+    ///   - tipsFont: 提示文案字体大小
+    ///   - tipsColor: 提示文案颜色
+    ///   - tipsBold: 提示文案是否加粗
+    fileprivate func drawTorusScale(_ rect: CGRect,
+                                    backColor: UIColor,
+                                    finishColor: UIColor,
+                                    torusWidth: CGFloat,
+                                    startAngle: CGFloat,
+                                    clockwise:Bool,
+                                    scale: CGFloat,
+                                    scaleBold: Bool,
+                                    scaleFont: CGFloat,
+                                    scaleColor: UIColor,
+                                    tipsText: String,
+                                    tipsFont: CGFloat,
+                                    tipsColor:UIColor,
+                                    tipsBold: Bool) {
+        //1.绘制圆环
+        drawCircle(rect, backColor: backColor, lineWidth: torusWidth, startAngle: startAngle, endAngle: startAngle + .pi * 2, clockwise: clockwise)
+        
+        //2.绘制完成比例
+        drawCircle(rect, backColor: finishColor, lineWidth: torusWidth, startAngle: startAngle, endAngle: startAngle + .pi * 2 * scale, clockwise: clockwise)
+        
+        //3.设置完成率文案
+        //计算圆心
+        let centerX = rect.size.width / 2
+        let centerY = rect.size.height / 2
+        
+        // 计算半径 = 半径长短判断 - 圆环的一半
+        let radius = (centerX > centerY ? centerY : centerX) - torusWidth / 2.0
+        
+        var offSetY = scaleFont / 2.0
+        
+        if tipsText.count > 0 {
+            offSetY = scaleFont
+        }
+        
+        // y + 半径 + 圆环 一半 - 字体高度
+        var originY = rect.origin.y + radius + torusWidth / 2.0 - offSetY
+        let originX = rect.origin.x + torusWidth + 2.5
+        let labelWidth = rect.size.width - torusWidth * 2.0 - 5
+        
+        let labelRect = CGRect(x: originX, y: originY, width: labelWidth, height: scaleFont)
+        
+        drawLabelInCell(labelRect, text: "\(scale * 100)%", alignment: .center, font: .systemFont(ofSize: scaleFont, weight: scaleBold ? .medium : .regular), textColor: scaleColor)
+        
+        if tipsText.count > 0 {
+            // y + 半径 + 圆环 一半 - 字体高度
+            originY = rect.origin.y + radius + torusWidth / 2.0 + 1
+            let tipsRect = CGRect(x: originX, y: originY, width: labelWidth, height: tipsFont)
+            drawLabelInCell(tipsRect, text: "\(tipsText)", alignment: .center, font: .systemFont(ofSize: tipsFont, weight: tipsBold ? .medium : .regular), textColor: tipsColor)
+        }
+        
+    }
+    
+    
     /// 画圆环
     /// - Parameters:
     ///   - rect: 位置信息
@@ -1122,7 +1227,7 @@ open class RBPDFUtils {
             
         // 逆时针画一个圆弧
         // 画一个圆弧作为context的路径，(x, y)是圆弧的圆心；radius是圆弧的半径；`startAngle' 是开始点的弧度;`endAngle' 是结束位置的弧度;（此处开始位置为屏幕坐标轴x轴正轴方向）; clockwise 为1是，圆弧是逆时针，0的时候就是顺时针。startAngle跟endAngle都是弧度制
-        ctx.addArc(center: CGPoint(x: rect.origin.x + radius, y: rect.origin.y + radius), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
+        ctx.addArc(center: CGPoint(x: rect.origin.x + radius + lineWidth / 2.0, y: rect.origin.y + radius + lineWidth / 2.0), radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
         
         ctx.strokePath()
     }
@@ -1367,6 +1472,17 @@ open class RBPDFUtils {
                 switch arrangementDirection {
                 case .horizontal:
                     currentOffset = CGPoint(x: tableFrame.origin.x + tableFrame.width, y: currentOffset.y)
+                case .vertical:
+                    currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
+                }
+                
+            case let .addFIHTorusScale(size, backColor, finishColor, torusWidth, startAngle, clockwise, scale, scaleBold, scaleFont, scaleColor, tipsText, tipsFont, tipsColor, tipsBold):
+                
+                drawTorusScale(CGRect(origin: currentOffset, size: size), backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)
+                lastYOffset = currentOffset.y + size.height                
+                switch arrangementDirection {
+                case .horizontal:
+                    currentOffset = CGPoint(x: currentOffset.x + size.width, y: currentOffset.y)
                 case .vertical:
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
