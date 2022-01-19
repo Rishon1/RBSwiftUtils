@@ -20,9 +20,10 @@ private enum RBPDFCommand {
     
     case addTable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<String>>)
     
-    case addRishonUITable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, rowHeightRefer: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, tableLineColor: UIColor, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<Any>>, columnLine: [Bool]?, rowLine:[Bool]?, imageSize: CGSize?, rowFirstLineShow:Bool?)
+    case addRishonUITable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, rowHeightRefer: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, tableLineColor: UIColor, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<Any>>, columnLine: [Bool]?, rowLine:[Bool]?, imageSize: CGSize?, progressBarBackColor: UIColor?, progressBarFinishColor: UIColor?, progressBarBold: Bool, progressBarFont: CGFloat, progressBarColor: UIColor?, rowFirstLineShow:Bool?)
     
     case addRishonTorusScale(size: CGSize, backColor: UIColor, finishColor: UIColor, torusWidth: CGFloat, startAngle: CGFloat, clockwise:Bool, scale: CGFloat, scaleBold: Bool, scaleFont: CGFloat, scaleColor: UIColor, tipsText: String, tipsFont: CGFloat, tipsColor:UIColor, tipsBold: Bool)
+    case addRishonProgressBar(size: CGSize, backColor: UIColor, finishColor: UIColor, progress: CGFloat, progressBold: Bool = true, progressFont: CGFloat = 20, progressColor: UIColor = .black)
     
     case addRishonCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat, endAngle:CGFloat, clockwise:Bool)
     case addRishonSpace(CGFloat)
@@ -166,13 +167,13 @@ open class RBPDFUtils {
                           columnCount: Int,
                           rowHeight: CGFloat,
                           rowHeightRefer: CGFloat = 30,
-                          tableLineWidth: CGFloat,
+                          tableLineWidth: CGFloat = 1,
                           tableLineColor: UIColor = .black,
                           tableDefinition: TableDefinition,
                           dataArray: Array<Array<Any>>,
                           imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                           rowFirstLineShow: Bool = true) {
-        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: nil, imageSize:imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: nil, imageSize:imageSize, progressBarBackColor: nil, progressBarFinishColor: nil, progressBarBold: false, progressBarFont: 0, progressBarColor: nil, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     
@@ -190,14 +191,14 @@ open class RBPDFUtils {
                           columnCount: Int,
                           rowHeight: CGFloat,
                           rowHeightRefer: CGFloat = 30,
-                          tableLineWidth: CGFloat,
+                          tableLineWidth: CGFloat = 1,
                           tableLineColor: UIColor = .black,
                           tableDefinition: TableDefinition,
                           dataArray: Array<Array<Any>>,
                           columnLine: [Bool],
                           imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                           rowFirstLineShow: Bool = true) {
-        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: nil, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: nil, imageSize: imageSize, progressBarBackColor: nil, progressBarFinishColor: nil, progressBarBold: false, progressBarFont: 0, progressBarColor: nil, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     /// 繪製表格數據
@@ -211,17 +212,17 @@ open class RBPDFUtils {
     ///   - dataArray: 數據源
     ///   - rowLine: 橫線展示控制，個數與 行數一直
     open func addRishonUITable(_ rowCount: Int,
-                            columnCount: Int,
-                            rowHeight: CGFloat,
-                            rowHeightRefer: CGFloat = 30,
-                            tableLineWidth: CGFloat,
-                            tableLineColor: UIColor = .black,
-                            tableDefinition: TableDefinition,
-                            dataArray: Array<Array<Any>>,
-                            rowLine: [Bool],
-                            imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
-                            rowFirstLineShow: Bool = true) {
-        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+                               columnCount: Int,
+                               rowHeight: CGFloat,
+                               rowHeightRefer: CGFloat = 30,
+                               tableLineWidth: CGFloat = 1,
+                               tableLineColor: UIColor = .black,
+                               tableDefinition: TableDefinition,
+                               dataArray: Array<Array<Any>>,
+                               rowLine: [Bool],
+                               imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
+                               rowFirstLineShow: Bool = true) {
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: nil, progressBarFinishColor: nil, progressBarBold: false, progressBarFont: 0, progressBarColor: nil, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     /// 繪製表格數據
@@ -236,23 +237,63 @@ open class RBPDFUtils {
     ///   - columnLine: 豎線展示控制，數組個數與 列數一直
     ///   - rowLine: 橫線展示控制，個數與 行數一直
     open func addRishonUITable(_ rowCount: Int,
-                            columnCount: Int,
-                            rowHeight: CGFloat,
-                            rowHeightRefer: CGFloat = 30,
-                            tableLineWidth: CGFloat,
-                            tableLineColor: UIColor = .black,
-                            tableDefinition: TableDefinition,
-                            dataArray: Array<Array<Any>>,
-                            columnLine: [Bool],
-                            rowLine: [Bool],
-                            imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
-                            rowFirstLineShow: Bool = true) {
-        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+                               columnCount: Int,
+                               rowHeight: CGFloat,
+                               rowHeightRefer: CGFloat = 30,
+                               tableLineWidth: CGFloat = 1,
+                               tableLineColor: UIColor = .black,
+                               tableDefinition: TableDefinition,
+                               dataArray: Array<Array<Any>>,
+                               columnLine: [Bool],
+                               rowLine: [Bool],
+                               imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
+                               rowFirstLineShow: Bool = true) {
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: nil, progressBarFinishColor: nil, progressBarBold: false, progressBarFont: 0, progressBarColor: nil, rowFirstLineShow: rowFirstLineShow) ]
     }
+    
+    /// 绘制表格数据包含进度条
+    /// - Parameters:
+    ///   - rowCount: 行数
+    ///   - columnCount: 列数
+    ///   - rowHeight: 行高
+    ///   - rowHeightRefer: 行高参考高度
+    ///   - tableLineWidth: 邊框線寬
+    ///   - tableLineColor: 边框颜色
+    ///   - tableDefinition: 表格內容 屬性
+    ///   - dataArray: 数据源
+    ///   - columnLine: 豎線展示控制，數組個數與 列數一直
+    ///   - rowLine: 橫線展示控制，個數與 行數一直
+    ///   - imageSize: 图片尺寸
+    ///   - progressBarBackColor: 进度条背景色
+    ///   - progressBarFinishColor: 进度条完成色
+    ///   - progressBarBold: 进度条文字是否加粗
+    ///   - progressBarFont: 进度条文字大小
+    ///   - progressBarColor: 进度条文字颜色
+    ///   - rowFirstLineShow: 第一行线是否展示
+    open func addRishonUITableWithProgressBar(_ rowCount: Int,
+                                              columnCount: Int,
+                                              rowHeight: CGFloat,
+                                              rowHeightRefer: CGFloat = 30,
+                                              tableLineWidth: CGFloat = 1,
+                                              tableLineColor: UIColor = .black,
+                                              tableDefinition: TableDefinition,
+                                              dataArray: Array<Array<Any>>,
+                                              columnLine: [Bool],
+                                              rowLine: [Bool],
+                                              imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
+                                              progressBarBackColor: UIColor = .lightGray,
+                                              progressBarFinishColor: UIColor = .green,
+                                              progressBarBold: Bool = false,
+                                              progressBarFont: CGFloat = 20,
+                                              progressBarColor: UIColor = .black,
+                                              rowFirstLineShow: Bool = true) {
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: progressBarBackColor, progressBarFinishColor: progressBarFinishColor, progressBarBold: progressBarBold, progressBarFont: progressBarFont, progressBarColor: progressBarColor, rowFirstLineShow: rowFirstLineShow) ]
+    }
+    
     
     /// 绘制环状 达成率图
     /// - Parameters:
-    ///   - rect: 位置
+    ///   - size: 尺寸
     ///   - backColor: 背景色
     ///   - finishColor: 完成色
     ///   - torusWidth: 环宽
@@ -281,6 +322,26 @@ open class RBPDFUtils {
                                tipsColor:UIColor = .gray,
                                tipsBold: Bool = true){
         commands += [ .addRishonTorusScale(size: size, backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)]
+    }
+    
+    
+    /// 绘制进度条
+    /// - Parameters:
+    ///   - size: 尺寸
+    ///   - backColor: 背景色
+    ///   - finishColor: 完成色
+    ///   - progress: 完成进度
+    ///   - progressBold: 进度字体是否加粗
+    ///   - progressFont: 进度字体大小
+    ///   - progressColor: 进度字体颜色
+    open func addRishonProgressBar(size: CGSize,
+                                   backColor: UIColor,
+                                   finishColor: UIColor,
+                                   progress: CGFloat,
+                                   progressBold: Bool = true,
+                                   progressFont: CGFloat = 20,
+                                   progressColor: UIColor = .black) {
+        commands += [ .addRishonProgressBar(size: size, backColor: backColor, finishColor: finishColor, progress: progress, progressBold: progressBold, progressFont: progressFont, progressColor: progressColor)]
     }
     
     
@@ -479,6 +540,23 @@ open class RBPDFUtils {
         currentContext.drawPath(using: .fill)
         
         return drawRect
+    }
+    
+    fileprivate func drawRishonProgressBar(_ rect: CGRect, lineColor: UIColor) {
+        
+        let path = UIBezierPath(rect: rect).cgPath
+        
+        // Get the graphics context.
+        let currentContext = UIGraphicsGetCurrentContext()!
+        
+        // Set color
+        lineColor.setStroke()
+        lineColor.setFill()
+        
+        // Draw path
+        currentContext.addPath(path)
+        currentContext.drawPath(using: .fill)
+        
     }
     
     
@@ -734,21 +812,26 @@ open class RBPDFUtils {
     
     
     fileprivate func drawRishonUITable(rowCount: Int,
-                                  alignment: ContentAlignment,
-                                  columnCount: Int,
-                                  rowHeight: CGFloat,
-                                  rowHeightRefer: CGFloat,
-                                  columnWidth: CGFloat?,
-                                  tableLineWidth: CGFloat,
-                                  tableLineColor: UIColor,
-                                  font: UIFont?,
-                                  tableDefinition:TableDefinition?,
-                                  dataArray: Array<Array<Any>>,
-                                  currentOffset: CGPoint,
-                                  columnLine: [Bool]?,
-                                  rowLine:[Bool]?,
-                                  imageSize: CGSize?,
-                                  rowFirstLineShow:Bool) -> CGRect {
+                                       alignment: ContentAlignment,
+                                       columnCount: Int,
+                                       rowHeight: CGFloat,
+                                       rowHeightRefer: CGFloat,
+                                       columnWidth: CGFloat?,
+                                       tableLineWidth: CGFloat,
+                                       tableLineColor: UIColor,
+                                       font: UIFont?,
+                                       tableDefinition:TableDefinition?,
+                                       dataArray: Array<Array<Any>>,
+                                       currentOffset: CGPoint,
+                                       columnLine: [Bool]?,
+                                       rowLine:[Bool]?,
+                                       imageSize: CGSize?,
+                                       progressBarBackColor: UIColor,
+                                       progressBarFinishColor: UIColor,
+                                       progressBarBold: Bool,
+                                       progressBarFont: CGFloat,
+                                       progressBarColor: UIColor,
+                                       rowFirstLineShow:Bool) -> CGRect {
         
         let height = (CGFloat(rowCount)*rowHeight)
         
@@ -938,7 +1021,27 @@ open class RBPDFUtils {
                 
                 drawBackColor(rect, backColor: currentBackColor, lineWidth: width)
                 
-                if dataArray[i][j] is String  {
+                //计算百分比
+                if dataArray[i][j] is String && (dataArray[i][j] as! String).hasPrefix("progress_") {
+                    let scoreStr = (dataArray[i][j] as! String).replacingOccurrences(of: "progress_", with: "")
+                    let score = CGFloat(Float(scoreStr) ?? 0)
+                    
+                    var marginY = 10.0
+                    let marginX = 5.0
+                    
+                    var progressHeight = rowHeight - marginY * 2
+                    //限制进度条最大高度 为30
+                    if progressHeight > 30 {
+                        progressHeight = 30.0
+                        marginY = (rowHeight - progressHeight) / 2.0
+                    }
+                    
+                    let percentRect = CGRect(x: newOriginX + marginX, y: newOriginY + marginY, width: currentColumnWidth - marginX * 2, height: progressHeight)
+                    
+                    drawProgressBar(percentRect, backColor: progressBarBackColor, finishColor: progressBarFinishColor, progress: score, progressBold: progressBarBold, progressFont: progressBarFont, progressColor: progressBarColor)
+                    
+                }
+                else if dataArray[i][j] is String  {
                     drawLabelInCell(frame, text: dataArray[i][j] as! String, alignment: currentAlignment, font: currentFont, textColor: currentTextColor)
                 }
                 else if dataArray[i][j] is NSMutableAttributedString {
@@ -1193,6 +1296,31 @@ open class RBPDFUtils {
         
     }
     
+    
+    /// 绘制进度条样式
+    /// - Parameters:
+    ///   - rect: 位置
+    ///   - backColor: 背景色
+    ///   - finishColor: 完成色
+    ///   - progress: 进度
+    ///   - progressBold: 进度字体是否加粗
+    ///   - progressFont: 进度字体大小
+    ///   - progressColor: 进度字体颜色
+    fileprivate func drawProgressBar(_ rect: CGRect,
+                                     backColor: UIColor,
+                                     finishColor: UIColor,
+                                     progress: CGFloat,
+                                     progressBold: Bool,
+                                     progressFont: CGFloat,
+                                     progressColor: UIColor) {
+        //1.绘制背景
+        drawRishonProgressBar(rect, lineColor: backColor)
+        //2.绘制完成进度
+        drawRishonProgressBar(CGRect(origin: rect.origin, size: CGSize(width: rect.size.width * progress, height: rect.size.height)), lineColor: finishColor)
+        //3.添加进度文案
+        drawLabelInCell(rect, text: "\(progress * 100)%", alignment: .center, font: .systemFont(ofSize: progressFont, weight: progressBold ? .medium:.regular), textColor: progressColor)
+        
+    }
     
     /// 画圆环
     /// - Parameters:
@@ -1460,8 +1588,8 @@ open class RBPDFUtils {
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
                 
-            case let .addRishonUITable(rowCount, columnCount, rowHeight, rowHeightRefer, columnWidth, tableLineWidth, tableLineColor, font, tableDefinition, dataArray, columnLine, rowLine, imageSize, rowFirstLineShow) :
-                let tableFrame = drawRishonUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow!)
+            case let .addRishonUITable(rowCount, columnCount, rowHeight, rowHeightRefer, columnWidth, tableLineWidth, tableLineColor, font, tableDefinition, dataArray, columnLine, rowLine, imageSize, progressBarBackColor, progressBarFinishColor, progressBarBold, progressBarFont, progressBarColor, rowFirstLineShow) :
+                let tableFrame = drawRishonUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: progressBarBackColor!, progressBarFinishColor: progressBarFinishColor!, progressBarBold: progressBarBold, progressBarFont: progressBarFont, progressBarColor: progressBarColor!, rowFirstLineShow: rowFirstLineShow!)
                 lastYOffset = tableFrame.origin.y + tableFrame.height
                 switch arrangementDirection {
                 case .horizontal:
@@ -1474,6 +1602,16 @@ open class RBPDFUtils {
                 
                 drawTorusScale(CGRect(origin: currentOffset, size: size), backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)
                 lastYOffset = currentOffset.y + size.height                
+                switch arrangementDirection {
+                case .horizontal:
+                    currentOffset = CGPoint(x: currentOffset.x + size.width, y: currentOffset.y)
+                case .vertical:
+                    currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
+                }
+            case let .addRishonProgressBar(size, backColor, finishColor, progress, progressBold, progressFont, progressColor) :
+                
+                drawProgressBar(CGRect(origin: currentOffset, size: size), backColor: backColor, finishColor: finishColor, progress: progress, progressBold: progressBold, progressFont: progressFont, progressColor: progressColor)
+                lastYOffset = currentOffset.y + size.height
                 switch arrangementDirection {
                 case .horizontal:
                     currentOffset = CGPoint(x: currentOffset.x + size.width, y: currentOffset.y)

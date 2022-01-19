@@ -92,6 +92,17 @@ class RBPDFUtilsViewController: UIViewController {
         
         pdf.addText("绘制进度百分比")
         
+        pdf.addRishonProgressBar(size: CGSize(width: 100, height: 34), backColor: .lightGray, finishColor: .green, progress: 0.5, progressColor: .red)
+        pdf.addVerticalSpace(2)
+        pdf.beginHorizontalArrangement()
+        pdf.addRishonProgressBar(size: CGSize(width: 100, height: 34), backColor: .lightGray, finishColor: .green, progress: 0.2, progressColor: .red)
+        pdf.addHorizontalSpace(2)
+        pdf.addRishonProgressBar(size: CGSize(width: 100, height: 34), backColor: .lightGray, finishColor: .green, progress: 0.832, progressColor: .red)
+        
+        pdf.endHorizontalArrangement()
+        
+        pdf.addText("131313")
+        
         
         if let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
             
@@ -117,7 +128,7 @@ class RBPDFUtilsViewController: UIViewController {
     //table数据
     fileprivate func addRishonPDFConsumeRecordTableItem(pdf: RBPDFUtils) {
         
-        var dataArray:[Any] = ["南京金吉鸟", "2022/01/12\n12:50:30", "一般消费", "杠铃", "¥185", "优惠抵扣 -¥5\n会员抵扣 -¥5\n折扣券 -¥5\n积分抵扣 -¥5", "¥175"]
+        var dataArray:[Any] = ["南京金吉鸟", "2022/01/12\n12:50:30", "一般消费", "杠铃", "progress_0.25", "优惠抵扣 -¥5\n会员抵扣 -¥5\n折扣券 -¥5\n积分抵扣 -¥5", "¥175"]
         
         let text = "消费抵扣 -5\n获得积分+17"
         let attrStr = NSMutableAttributedString(string: "\(text)\n累计积分17")
@@ -161,7 +172,10 @@ class RBPDFUtilsViewController: UIViewController {
         }
         let tableDefinition = TableDefinition(alignments: alignments, columnWidths: columnWidths, fonts: fonts, textColors: textColors, backColors)
         
-        pdf.addRishonUITable(1, columnCount: columnWidths.count, rowHeight: 50, rowHeightRefer: 50, tableLineWidth: 1, tableLineColor: .gray, tableDefinition: tableDefinition, dataArray: [dataArray], columnLine:columnLine, rowLine: rowLine)
+        var infoArr = dataArray
+        infoArr[4] = "¥185"
+        
+        pdf.addRishonUITableWithProgressBar(4, columnCount: columnWidths.count, rowHeight: 50, rowHeightRefer: 50, tableLineWidth: 1, tableDefinition: tableDefinition, dataArray: [dataArray,dataArray,dataArray,infoArr], columnLine: columnLine, rowLine: rowLine, progressBarFont: 16)
         
         pdf.addVerticalSpace(5)
     }
