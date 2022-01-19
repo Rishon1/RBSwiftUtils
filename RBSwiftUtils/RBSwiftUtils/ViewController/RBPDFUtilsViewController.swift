@@ -64,23 +64,32 @@ class RBPDFUtilsViewController: UIViewController {
     
     
     @objc func getBtnDidClick() {
-        let pdf = RBPDFUtils(pageSize: RBPDFPageSize.A4, pageMargin: 15)
+        
+        let pageSize = RBPDFPageSize.A4
+        let pageMargin = 15.0
+        
+        let pdf = RBPDFUtils(pageSize: pageSize, pageMargin: pageMargin)
         
         pdf.addText("绘制圆角")
         pdf.addVerticalSpace(5)
         pdf.beginHorizontalArrangement()
         
-        pdf.addFIHTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.25, scaleFont: 22, scaleColor: .red, tipsText: "达成率", tipsFont: 16, tipsColor: .lightGray)
+        pdf.addRishonTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.25, scaleFont: 22, scaleColor: .red, tipsText: "达成率", tipsFont: 16, tipsColor: .lightGray)
         
-        pdf.addFIHTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.25, scaleFont: 22, scaleColor: .red, tipsText: "")
+        pdf.addRishonTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.25, scaleFont: 22, scaleColor: .red, tipsText: "")
         
         pdf.endHorizontalArrangement()
         
-        pdf.addFIHTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.85, scaleFont: 22, scaleColor: .red, tipsText: "达成率", tipsFont: 16, tipsColor: .lightGray)
+        pdf.addRishonTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.85, scaleFont: 22, scaleColor: .red, tipsText: "达成率", tipsFont: 16, tipsColor: .lightGray)
         
-        pdf.addFIHTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.75, scaleFont: 22, scaleColor: .red, tipsText: "")
+        pdf.addRishonTorusScale(size: CGSize(width: 120, height: 120), backColor: .gray, finishColor: .green, torusWidth: 20, scale: 0.75, scaleFont: 22, scaleColor: .red, tipsText: "")
         
         pdf.addVerticalSpace(5)
+        
+        addRishonPDFConsumeRecordTableItem(pdf: pdf)
+        
+        pdf.addRishonLineSeparator(size: CGSize(width: pageSize.width - pageMargin * 2.0, height: 1))
+        
         pdf.addText("绘制进度百分比")
         
         
@@ -104,4 +113,56 @@ class RBPDFUtilsViewController: UIViewController {
         }
     }
     
+    
+    //table数据
+    fileprivate func addRishonPDFConsumeRecordTableItem(pdf: RBPDFUtils) {
+        
+        var dataArray:[Any] = ["南京金吉鸟", "2022/01/12\n12:50:30", "一般消费", "杠铃", "¥185", "优惠抵扣 -¥5\n会员抵扣 -¥5\n折扣券 -¥5\n积分抵扣 -¥5", "¥175"]
+        
+        let text = "消费抵扣 -5\n获得积分+17"
+        let attrStr = NSMutableAttributedString(string: "\(text)\n累计积分17")
+        
+        attrStr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 10)], range: NSRange(location: 0, length: attrStr.length))
+        attrStr.addAttributes([NSAttributedString.Key.foregroundColor :UIColor .red], range: NSRange(location: 0, length: attrStr.length))
+        attrStr.addAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 8)], range: NSRange(location: 0, length: text.count))
+        attrStr.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], range: NSRange(location: 0, length: text.count))
+        
+        dataArray.append(attrStr)
+        
+        // 格式聲明
+        var alignments:[ContentAlignment] = []
+        let columnWidths: [CGFloat] = [65, 90, 65, 65, 70, 70, 70, 70]
+        var fonts:[UIFont] = []
+        var textColors:[UIColor] = []
+        var backColors:[UIColor] = []
+        var rowLine:[Bool] = []
+        var columnLine:[Bool] = []
+        
+        for i in 0..<columnWidths.count {
+            rowLine.append(true)
+            columnLine.append(false)
+            if i == 0 {
+                alignments.append(.left)
+            }
+            else {
+                alignments.append(.center)
+            }
+            textColors.append(.black)
+            
+            if i == 5 {
+                alignments[i] = .right
+                fonts.append(.systemFont(ofSize: 8))
+            }
+            else {
+                fonts.append(.systemFont(ofSize: 12))
+            }
+            
+            backColors.append(.white)
+        }
+        let tableDefinition = TableDefinition(alignments: alignments, columnWidths: columnWidths, fonts: fonts, textColors: textColors, backColors)
+        
+        pdf.addRishonUITable(1, columnCount: columnWidths.count, rowHeight: 50, rowHeightRefer: 50, tableLineWidth: 1, tableLineColor: .gray, tableDefinition: tableDefinition, dataArray: [dataArray], columnLine:columnLine, rowLine: rowLine)
+        
+        pdf.addVerticalSpace(5)
+    }
 }

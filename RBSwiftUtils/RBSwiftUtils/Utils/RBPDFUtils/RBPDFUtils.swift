@@ -16,16 +16,16 @@ private enum RBPDFCommand {
     case addLineSpace(CGFloat)
     case addHorizontalSpace(CGFloat)
     case addLineSeparator(height: CGFloat)
-    case addFIHLineSeparator(size: CGSize, lineColor: UIColor)
+    case addRishonLineSeparator(size: CGSize, lineColor: UIColor)
     
     case addTable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<String>>)
     
-    case addFIHUITable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, rowHeightRefer: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, tableLineColor: UIColor, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<Any>>, columnLine: [Bool]?, rowLine:[Bool]?, imageSize: CGSize?, rowFirstLineShow:Bool?)
+    case addRishonUITable(rowCount: Int, columnCount: Int, rowHeight: CGFloat, rowHeightRefer: CGFloat, columnWidth: CGFloat?, tableLineWidth: CGFloat, tableLineColor: UIColor, font: UIFont?, tableDefinition:TableDefinition?, dataArray: Array<Array<Any>>, columnLine: [Bool]?, rowLine:[Bool]?, imageSize: CGSize?, rowFirstLineShow:Bool?)
     
-    case addFIHTorusScale(size: CGSize, backColor: UIColor, finishColor: UIColor, torusWidth: CGFloat, startAngle: CGFloat, clockwise:Bool, scale: CGFloat, scaleBold: Bool, scaleFont: CGFloat, scaleColor: UIColor, tipsText: String, tipsFont: CGFloat, tipsColor:UIColor, tipsBold: Bool)
+    case addRishonTorusScale(size: CGSize, backColor: UIColor, finishColor: UIColor, torusWidth: CGFloat, startAngle: CGFloat, clockwise:Bool, scale: CGFloat, scaleBold: Bool, scaleFont: CGFloat, scaleColor: UIColor, tipsText: String, tipsFont: CGFloat, tipsColor:UIColor, tipsBold: Bool)
     
-    case addFIHCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat, endAngle:CGFloat, clockwise:Bool)
-    case addFIHSpace(CGFloat)
+    case addRishonCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat, endAngle:CGFloat, clockwise:Bool)
+    case addRishonSpace(CGFloat)
     
     case addTableLine(lineHeight: CGFloat, lineWidth: CGFloat, lineColor: UIColor)
     
@@ -140,8 +140,8 @@ open class RBPDFUtils {
         commands += [ .addLineSeparator(height: height) ]
     }
     
-    open func addFIHLineSeparator(size: CGSize = CGSize.init(width: 100, height: 1.0), lineColor: UIColor = .black) {
-        commands += [ .addFIHLineSeparator(size: size, lineColor:lineColor)]
+    open func addRishonLineSeparator(size: CGSize = CGSize(width: 100, height: 1.0), lineColor: UIColor = .black) {
+        commands += [ .addRishonLineSeparator(size: size, lineColor:lineColor)]
     }
     
     open func addTable(_ rowCount: Int, columnCount: Int, rowHeight: CGFloat, columnWidth: CGFloat, tableLineWidth: CGFloat, font: UIFont, dataArray: Array<Array<String>>) {
@@ -153,8 +153,8 @@ open class RBPDFUtils {
     }
     
     
-    // MARK: FIH 新增 相關方法
-    // MARK: 🔥🔥🔥🔥🔥🔥FIH绘制表格2.0💧💧💧💧💧💧💧
+    // MARK: Rishon 新增 相關方法
+    // MARK: 🔥🔥🔥🔥🔥🔥Rishon绘制表格2.0💧💧💧💧💧💧💧
     /// 繪製表格數據（默認 表格線條 都展示）
     /// - Parameters:
     ///   - rowCount: 行數
@@ -164,7 +164,7 @@ open class RBPDFUtils {
     ///   - tableLineWidth: 邊框線寬
     ///   - tableDefinition: 表格內容 屬性
     ///   - dataArray: 數據源
-    open func addFIHUITable(_ rowCount: Int,
+    open func addRishonUITable(_ rowCount: Int,
                           columnCount: Int,
                           rowHeight: CGFloat,
                           rowHeightRefer: CGFloat = 30,
@@ -174,7 +174,7 @@ open class RBPDFUtils {
                           dataArray: Array<Array<Any>>,
                           imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                           rowFirstLineShow: Bool = true) {
-        commands += [ .addFIHUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: nil, imageSize:imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: nil, imageSize:imageSize, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     
@@ -188,7 +188,7 @@ open class RBPDFUtils {
     ///   - tableDefinition: 表格內容 屬性
     ///   - dataArray: 數據源
     ///   - columnLine: 豎線展示控制，數組個數與 列數一直
-    open func addFIHUITable(_ rowCount: Int,
+    open func addRishonUITable(_ rowCount: Int,
                           columnCount: Int,
                           rowHeight: CGFloat,
                           rowHeightRefer: CGFloat = 30,
@@ -199,7 +199,7 @@ open class RBPDFUtils {
                           columnLine: [Bool],
                           imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                           rowFirstLineShow: Bool = true) {
-        commands += [ .addFIHUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: nil, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: nil, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     /// 繪製表格數據
@@ -212,7 +212,7 @@ open class RBPDFUtils {
     ///   - tableDefinition: 表格內容 屬性
     ///   - dataArray: 數據源
     ///   - rowLine: 橫線展示控制，個數與 行數一直
-    open func addFIHUITable(_ rowCount: Int,
+    open func addRishonUITable(_ rowCount: Int,
                             columnCount: Int,
                             rowHeight: CGFloat,
                             rowHeightRefer: CGFloat = 30,
@@ -223,7 +223,7 @@ open class RBPDFUtils {
                             rowLine: [Bool],
                             imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                             rowFirstLineShow: Bool = true) {
-        commands += [ .addFIHUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: nil, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     /// 繪製表格數據
@@ -237,7 +237,7 @@ open class RBPDFUtils {
     ///   - dataArray: 數據源
     ///   - columnLine: 豎線展示控制，數組個數與 列數一直
     ///   - rowLine: 橫線展示控制，個數與 行數一直
-    open func addFIHUITable(_ rowCount: Int,
+    open func addRishonUITable(_ rowCount: Int,
                             columnCount: Int,
                             rowHeight: CGFloat,
                             rowHeightRefer: CGFloat = 30,
@@ -249,7 +249,7 @@ open class RBPDFUtils {
                             rowLine: [Bool],
                             imageSize:CGSize = CGSize(width: 65.0, height: 65.0),
                             rowFirstLineShow: Bool = true) {
-        commands += [ .addFIHUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
+        commands += [ .addRishonUITable(rowCount: rowCount, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: nil, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: nil, tableDefinition: tableDefinition, dataArray: dataArray, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow) ]
     }
     
     /// 绘制环状 达成率图
@@ -268,7 +268,7 @@ open class RBPDFUtils {
     ///   - tipsFont: 提示文案字体大小
     ///   - tipsColor: 提示文案颜色
     ///   - tipsBold: 提示文案是否加粗
-    open func addFIHTorusScale(size: CGSize,
+    open func addRishonTorusScale(size: CGSize,
                                backColor: UIColor,
                                finishColor: UIColor,
                                torusWidth: CGFloat,
@@ -282,7 +282,7 @@ open class RBPDFUtils {
                                tipsFont: CGFloat = 15,
                                tipsColor:UIColor = .gray,
                                tipsBold: Bool = true){
-        commands += [ .addFIHTorusScale(size: size, backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)]
+        commands += [ .addRishonTorusScale(size: size, backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)]
     }
     
     
@@ -294,15 +294,15 @@ open class RBPDFUtils {
     ///   - startAngle: 开始点
     ///   - endAngle: 结束点
     ///   - clockwise: 是否逆时针
-    open func addFIHCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat = .pi * 3/2, endAngle: CGFloat, clockwise: Bool) {
-        commands += [ .addFIHCircle(size: size, backColor: backColor, lineWidth: lineWidth, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)]
+    open func addRishonCircle(size: CGSize, backColor:UIColor, lineWidth:CGFloat, startAngle:CGFloat = .pi * 3/2, endAngle: CGFloat, clockwise: Bool) {
+        commands += [ .addRishonCircle(size: size, backColor: backColor, lineWidth: lineWidth, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)]
     }
     
     
     /// 设置偏移量
     /// - Parameter space: 偏移量
-    open func addFIHSpace(_ space: CGFloat) {
-        commands += [ .addFIHSpace(space) ]
+    open func addRishonSpace(_ space: CGFloat) {
+        commands += [ .addRishonSpace(space) ]
     }
     
     open func addTableLine(lineHeight: CGFloat, lineWidth: CGFloat, lineColor: UIColor) {
@@ -468,7 +468,7 @@ open class RBPDFUtils {
         return renderingRect
     }
     
-    fileprivate func drawFIHLineSeparator(size: CGSize, currentOffset: CGPoint, lineColor: UIColor) -> CGRect {
+    fileprivate func drawRishonLineSeparator(size: CGSize, currentOffset: CGPoint, lineColor: UIColor) -> CGRect {
         
         let drawRect = CGRect(x: currentOffset.x, y: currentOffset.y, width: size.width, height: size.height)
         let path = UIBezierPath(rect: drawRect).cgPath
@@ -482,7 +482,7 @@ open class RBPDFUtils {
         
         // Draw path
         currentContext.addPath(path)
-        currentContext.drawPath(using: .fillStroke)
+        currentContext.drawPath(using: .fill)
         
         return drawRect
     }
@@ -507,7 +507,7 @@ open class RBPDFUtils {
         return drawRect
     }
     
-    fileprivate func drawFIHTableLine(lineHeight: CGFloat, lineWidth: CGFloat, currentOffset: CGPoint, lineColor:UIColor) -> CGRect  {
+    fileprivate func drawRishonTableLine(lineHeight: CGFloat, lineWidth: CGFloat, currentOffset: CGPoint, lineColor:UIColor) -> CGRect  {
         
         let drawRect = CGRect(x: currentOffset.x, y: currentOffset.y, width: lineWidth, height: lineHeight)
         
@@ -517,7 +517,7 @@ open class RBPDFUtils {
     }
     
     
-    fileprivate func drawFIHTable(rowCount: Int,
+    fileprivate func drawRishonTable(rowCount: Int,
                                   alignment: ContentAlignment,
                                   columnCount: Int,
                                   rowHeight: CGFloat,
@@ -739,7 +739,7 @@ open class RBPDFUtils {
     }
     
     
-    fileprivate func drawFIHUITable(rowCount: Int,
+    fileprivate func drawRishonUITable(rowCount: Int,
                                   alignment: ContentAlignment,
                                   columnCount: Int,
                                   rowHeight: CGFloat,
@@ -1438,9 +1438,9 @@ open class RBPDFUtils {
                 case .vertical:
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
-            case let .addFIHLineSeparator(size: size, lineColor: lineColor):
+            case let .addRishonLineSeparator(size: size, lineColor: lineColor):
                 
-                let drawRect = drawFIHLineSeparator(size: size, currentOffset: currentOffset, lineColor: lineColor)
+                let drawRect = drawRishonLineSeparator(size: size, currentOffset: currentOffset, lineColor: lineColor)
                 lastYOffset = drawRect.origin.y + drawRect.height
                 switch arrangementDirection {
                 case .horizontal:
@@ -1466,8 +1466,8 @@ open class RBPDFUtils {
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
                 
-            case let .addFIHUITable(rowCount, columnCount, rowHeight, rowHeightRefer, columnWidth, tableLineWidth, tableLineColor, font, tableDefinition, dataArray, columnLine, rowLine, imageSize, rowFirstLineShow) :
-                let tableFrame = drawFIHUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow!)
+            case let .addRishonUITable(rowCount, columnCount, rowHeight, rowHeightRefer, columnWidth, tableLineWidth, tableLineColor, font, tableDefinition, dataArray, columnLine, rowLine, imageSize, rowFirstLineShow) :
+                let tableFrame = drawRishonUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, rowFirstLineShow: rowFirstLineShow!)
                 lastYOffset = tableFrame.origin.y + tableFrame.height
                 switch arrangementDirection {
                 case .horizontal:
@@ -1476,7 +1476,7 @@ open class RBPDFUtils {
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
                 
-            case let .addFIHTorusScale(size, backColor, finishColor, torusWidth, startAngle, clockwise, scale, scaleBold, scaleFont, scaleColor, tipsText, tipsFont, tipsColor, tipsBold):
+            case let .addRishonTorusScale(size, backColor, finishColor, torusWidth, startAngle, clockwise, scale, scaleBold, scaleFont, scaleColor, tipsText, tipsFont, tipsColor, tipsBold):
                 
                 drawTorusScale(CGRect(origin: currentOffset, size: size), backColor: backColor, finishColor: finishColor, torusWidth: torusWidth, startAngle: startAngle, clockwise: clockwise, scale: scale, scaleBold: scaleBold, scaleFont: scaleFont, scaleColor: scaleColor, tipsText: tipsText, tipsFont: tipsFont, tipsColor: tipsColor, tipsBold: tipsBold)
                 lastYOffset = currentOffset.y + size.height                
@@ -1486,7 +1486,7 @@ open class RBPDFUtils {
                 case .vertical:
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
-            case let .addFIHCircle(size, backColor, lineWidth, startAngle, endAngle, clockwise) :
+            case let .addRishonCircle(size, backColor, lineWidth, startAngle, endAngle, clockwise) :
                 drawCircle(CGRect(origin: currentOffset, size: size), backColor: backColor, lineWidth: lineWidth, startAngle: startAngle, endAngle: endAngle, clockwise: clockwise)
                 switch arrangementDirection {
                 case .horizontal:
@@ -1495,7 +1495,7 @@ open class RBPDFUtils {
                     lastYOffset = currentOffset.y + size.height
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
-            case let .addFIHSpace(space) :
+            case let .addRishonSpace(space) :
                 switch arrangementDirection {
                 case .horizontal:
                     lastYOffset = currentOffset.y
@@ -1505,7 +1505,7 @@ open class RBPDFUtils {
                     currentOffset = CGPoint(x: currentOffset.x, y: lastYOffset)
                 }
             case let .addTableLine(lineHeight, lineWidth, lineColor):
-                let tableFrame = drawFIHTableLine(lineHeight: lineHeight, lineWidth: lineWidth, currentOffset: currentOffset, lineColor: lineColor)
+                let tableFrame = drawRishonTableLine(lineHeight: lineHeight, lineWidth: lineWidth, currentOffset: currentOffset, lineColor: lineColor)
                 lastYOffset = tableFrame.origin.y + tableFrame.height
                 switch arrangementDirection {
                 case .horizontal:
