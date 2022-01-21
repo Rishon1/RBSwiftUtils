@@ -22,6 +22,10 @@
 		183457D12792A417003BE5BF /* RBLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457D02792A417003BE5BF /* RBLabelViewController.swift */; };
 		183457DD2797DEF5003BE5BF /* RBPDFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457DC2797DEF5003BE5BF /* RBPDFUtils.swift */; };
 		183457DF2797E0FC003BE5BF /* RBPDFUtilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457DE2797E0FC003BE5BF /* RBPDFUtilsViewController.swift */; };
+		187B2EFB279950EB00ECC7C1 /* RBPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B2EFA279950EB00ECC7C1 /* RBPageView.swift */; };
+		187B2EFD279950FF00ECC7C1 /* RBSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B2EFC279950FF00ECC7C1 /* RBSegmentView.swift */; };
+		187B2EFF2799511100ECC7C1 /* RBPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B2EFE2799511100ECC7C1 /* RBPageViewController.swift */; };
+		187B2F01279969D000ECC7C1 /* RBPageTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187B2F00279969D000ECC7C1 /* RBPageTestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		183457D02792A417003BE5BF /* RBLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBLabelViewController.swift; sourceTree = "<group>"; };
 		183457DC2797DEF5003BE5BF /* RBPDFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBPDFUtils.swift; sourceTree = "<group>"; };
 		183457DE2797E0FC003BE5BF /* RBPDFUtilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBPDFUtilsViewController.swift; sourceTree = "<group>"; };
+		187B2EFA279950EB00ECC7C1 /* RBPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBPageView.swift; sourceTree = "<group>"; };
+		187B2EFC279950FF00ECC7C1 /* RBSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBSegmentView.swift; sourceTree = "<group>"; };
+		187B2EFE2799511100ECC7C1 /* RBPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBPageViewController.swift; sourceTree = "<group>"; };
+		187B2F00279969D000ECC7C1 /* RBPageTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBPageTestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 				183457C2278ECFF9003BE5BF /* RBViewTestController.swift */,
 				183457D02792A417003BE5BF /* RBLabelViewController.swift */,
 				183457DE2797E0FC003BE5BF /* RBPDFUtilsViewController.swift */,
+				187B2F00279969D000ECC7C1 /* RBPageTestViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -110,6 +119,7 @@
 		183457BC278EC877003BE5BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				187B2EF9279950D100ECC7C1 /* RBPageView */,
 				183457DB2797DED8003BE5BF /* RBPDFUtils */,
 				183457CD27929E23003BE5BF /* RBLabel */,
 				183457C4278ED05E003BE5BF /* RBView */,
@@ -148,6 +158,16 @@
 				183457DC2797DEF5003BE5BF /* RBPDFUtils.swift */,
 			);
 			path = RBPDFUtils;
+			sourceTree = "<group>";
+		};
+		187B2EF9279950D100ECC7C1 /* RBPageView */ = {
+			isa = PBXGroup;
+			children = (
+				187B2EFA279950EB00ECC7C1 /* RBPageView.swift */,
+				187B2EFC279950FF00ECC7C1 /* RBSegmentView.swift */,
+				187B2EFE2799511100ECC7C1 /* RBPageViewController.swift */,
+			);
+			path = RBPageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,13 +246,17 @@
 				183457D12792A417003BE5BF /* RBLabelViewController.swift in Sources */,
 				183457BF278EC99F003BE5BF /* RBAlertView.swift in Sources */,
 				183457DD2797DEF5003BE5BF /* RBPDFUtils.swift in Sources */,
+				187B2EFB279950EB00ECC7C1 /* RBPageView.swift in Sources */,
+				187B2EFF2799511100ECC7C1 /* RBPageViewController.swift in Sources */,
 				183457C1278ECBC5003BE5BF /* RBAlertViewTestController.swift in Sources */,
 				183457A9278EC32A003BE5BF /* ViewController.swift in Sources */,
 				183457A5278EC32A003BE5BF /* AppDelegate.swift in Sources */,
+				187B2F01279969D000ECC7C1 /* RBPageTestViewController.swift in Sources */,
 				183457BA278EC5F9003BE5BF /* RBHomeCellModel.swift in Sources */,
 				183457C6278ED06E003BE5BF /* RBView.swift in Sources */,
 				183457A7278EC32A003BE5BF /* SceneDelegate.swift in Sources */,
 				183457CF27929E3D003BE5BF /* RBLabel.swift in Sources */,
+				187B2EFD279950FF00ECC7C1 /* RBSegmentView.swift in Sources */,
 				183457DF2797E0FC003BE5BF /* RBPDFUtilsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

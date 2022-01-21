@@ -23,7 +23,8 @@ class ViewController: UIViewController {
         self.dataSource = [RBHomeCellModel(.alertType, title: "AlertView"),
                            RBHomeCellModel(.viewType, title: "UIView"),
                            RBHomeCellModel(.labelType, title: "UILabel"),
-                           RBHomeCellModel(.pdfType, title: "PDFUtils")]
+                           RBHomeCellModel(.pdfType, title: "PDFUtils"),
+                           RBHomeCellModel(.pageViewType, title: "PageView")]
         
         self.tableView.reloadData()
     }
@@ -87,7 +88,9 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource {
         else if cellModel.floorType == .pdfType {
             self.navigationController?.pushViewController(RBPDFUtilsViewController(), animated: true)
         }
-        
+        else if cellModel.floorType == .pageViewType {
+            self.navigationController?.pushViewController(RBPageTestViewController(), animated: true)
+        }
     }
 }
 
