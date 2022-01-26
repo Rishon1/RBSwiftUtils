@@ -103,6 +103,18 @@ class RBPDFUtilsViewController: UIViewController {
         
         pdf.addText("131313")
         
+        pdf.beginNewPage()
+        
+        pdf.addRishonUITable(1, columnCount: 1, rowHeight: 44, tableDefinition: TableDefinition(alignments: [.center], columnWidths: [100], fonts: [.systemFont(ofSize: 16)], textColors: [.black], [.white]), dataArray: [["项目"]])
+        pdf.addRishonUITable(1, columnCount: 1, rowHeight: 132, tableDefinition: TableDefinition(alignments: [.center], columnWidths: [100], fonts: [.systemFont(ofSize: 16)], textColors: [.black], [.white]), dataArray: [["身高身高身高身高"]])
+        
+        pdf.addVerticalSpace(-176)
+        pdf.addHorizontalSpace(100)
+        pdf.addRishonUITable(1, columnCount: 3, rowHeight: 44, tableDefinition: TableDefinition(alignments: [.center, .center, .center], columnWidths: [100, 100, 100], fonts: [.systemFont(ofSize: 16), .systemFont(ofSize: 16), .systemFont(ofSize: 16)], textColors: [.black, .black, .black], [.white, .white, .white]), dataArray: [["2022/01/24", "2022/01/25", "2022/01/26"]])
+        pdf.addRishonUITable(3, columnCount: 3, rowHeight: 44, tableDefinition: TableDefinition(alignments: [.center, .center, .center], columnWidths: [100, 100, 100], fonts: [.systemFont(ofSize: 16), .systemFont(ofSize: 16), .systemFont(ofSize: 16)], textColors: [.black, .black, .black], [.white, .white, .white]), dataArray: [["身高1", "身高2", "身高3"], ["身高4", "身高5", "身高6"], ["身高7", "身高8", "身高9"]])
+        
+        pdf.addText("12311313")
+        
         
         if let documentDirectories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
             

@@ -765,11 +765,11 @@ open class RBPDFUtils {
                                        columnLine: [Bool]?,
                                        rowLine:[Bool]?,
                                        imageSize: CGSize?,
-                                       progressBarBackColor: UIColor,
-                                       progressBarFinishColor: UIColor,
-                                       progressBarBold: Bool,
-                                       progressBarFont: CGFloat,
-                                       progressBarColor: UIColor,
+                                       progressBarBackColor: UIColor?,
+                                       progressBarFinishColor: UIColor?,
+                                       progressBarBold: Bool = false,
+                                       progressBarFont: CGFloat = 20,
+                                       progressBarColor: UIColor?,
                                        rowFirstLineShow:Bool) -> CGRect {
         
         let height = (CGFloat(rowCount)*rowHeight)
@@ -977,7 +977,7 @@ open class RBPDFUtils {
                     
                     let percentRect = CGRect(x: newOriginX + marginX, y: newOriginY + marginY, width: currentColumnWidth - marginX * 2, height: progressHeight)
                     
-                    drawProgressBar(percentRect, backColor: progressBarBackColor, finishColor: progressBarFinishColor, progress: score, progressBold: progressBarBold, progressFont: progressBarFont, progressColor: progressBarColor)
+                    drawProgressBar(percentRect, backColor: progressBarBackColor!, finishColor: progressBarFinishColor!, progress: score, progressBold: progressBarBold, progressFont: progressBarFont, progressColor: progressBarColor!)
                     
                 }
                 else if dataArray[i][j] is String  {
@@ -1246,12 +1246,12 @@ open class RBPDFUtils {
     ///   - progressFont: 进度字体大小
     ///   - progressColor: 进度字体颜色
     fileprivate func drawProgressBar(_ rect: CGRect,
-                                     backColor: UIColor,
-                                     finishColor: UIColor,
-                                     progress: CGFloat,
-                                     progressBold: Bool,
-                                     progressFont: CGFloat,
-                                     progressColor: UIColor) {
+                                     backColor: UIColor = .lightGray,
+                                     finishColor: UIColor = .green,
+                                     progress: CGFloat = 0,
+                                     progressBold: Bool = false,
+                                     progressFont: CGFloat = 20,
+                                     progressColor: UIColor = .black) {
         //1.绘制背景
         drawRishonProgressBar(rect, lineColor: backColor)
         //2.绘制完成进度
@@ -1528,7 +1528,7 @@ open class RBPDFUtils {
                 }
                 
             case let .addRishonUITable(rowCount, columnCount, rowHeight, rowHeightRefer, columnWidth, tableLineWidth, tableLineColor, font, tableDefinition, dataArray, columnLine, rowLine, imageSize, progressBarBackColor, progressBarFinishColor, progressBarBold, progressBarFont, progressBarColor, rowFirstLineShow) :
-                let tableFrame = drawRishonUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: progressBarBackColor!, progressBarFinishColor: progressBarFinishColor!, progressBarBold: progressBarBold, progressBarFont: progressBarFont, progressBarColor: progressBarColor!, rowFirstLineShow: rowFirstLineShow!)
+                let tableFrame = drawRishonUITable(rowCount: rowCount, alignment: alignment, columnCount: columnCount, rowHeight: rowHeight, rowHeightRefer: rowHeightRefer, columnWidth: columnWidth, tableLineWidth: tableLineWidth, tableLineColor: tableLineColor, font: font, tableDefinition: tableDefinition, dataArray: dataArray, currentOffset: currentOffset, columnLine: columnLine, rowLine: rowLine, imageSize: imageSize, progressBarBackColor: progressBarBackColor, progressBarFinishColor: progressBarFinishColor, progressBarBold: progressBarBold, progressBarFont: progressBarFont, progressBarColor: progressBarColor, rowFirstLineShow: rowFirstLineShow!)
                 lastYOffset = tableFrame.origin.y + tableFrame.height
                 switch arrangementDirection {
                 case .horizontal:
